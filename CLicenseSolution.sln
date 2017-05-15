@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLicense", "CLicense.csproj", "{8EFA096F-32BC-4070-A324-7CF224CDAEE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLicenseTests", "..\CLicenseTests\CLicenseTests.csproj", "{C7D7C7DD-94FB-4543-978A-651CC957B56B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLicenseTests", "CLicenseTests\CLicenseTests.csproj", "{C7D7C7DD-94FB-4543-978A-651CC957B56B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

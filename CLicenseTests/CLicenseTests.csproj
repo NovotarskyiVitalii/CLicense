@@ -113,7 +113,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CLicense\CLicense.csproj">
+    <ProjectReference Include="..\CLicense.csproj">
       <Project>{8efa096f-32bc-4070-a324-7cf224cdaee6}</Project>
       <Name>CLicense</Name>
     </ProjectReference>
