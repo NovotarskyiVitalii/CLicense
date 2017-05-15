@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Помилка аутентифікації користувача";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+<div id="CancelMessage" class="alert alert-danger">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <div id="ErrorMessage">
+        @Html.Raw(@ViewBag.Message)
+    </div>
+</div>

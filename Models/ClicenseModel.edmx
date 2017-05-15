@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище CLicenseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "CLicense.dbo.vItemInfo" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="vItemInfo">
+          <Key>
+            <PropertyRef Name="CID" />
+            <PropertyRef Name="ClassCode" />
+            <PropertyRef Name="IID" />
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="CID" Type="int" Nullable="false" />
+          <Property Name="ClassParent" Type="int" />
+          <Property Name="ClassCode" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ClassName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ClassNote" Type="nvarchar" MaxLength="255" />
+          <Property Name="IID" Type="int" Nullable="false" />
+          <Property Name="Parent" Type="int" />
+          <Property Name="ItemCode" Type="nvarchar" MaxLength="30" />
+          <Property Name="ItemCodeLit" Type="nvarchar" MaxLength="30" />
+          <Property Name="ItemCodeNum" Type="int" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="80" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="160" />
+          <Property Name="Note" Type="nvarchar" MaxLength="255" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="ExpireDate" Type="date" />
+          <Property Name="Status" Type="smallint" Nullable="false" />
+        </EntityType>
+        <Function Name="spCurrencyListCombo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spGetGrantee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TaxCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="DocSeries" Type="nvarchar" Mode="In" />
+          <Parameter Name="DocNum" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spGetLimit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GranteeID" Type="int" Mode="In" />
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="LimitSaldo" Type="money" Mode="InOut" />
+        </Function>
+        <Function Name="spGetLimitSum" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GranteeID" Type="int" Mode="In" />
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="CurrencyID" Type="int" Mode="In" />
+          <Parameter Name="Amount" Type="money" Mode="In" />
+          <Parameter Name="LimitSaldo" Type="money" Mode="InOut" />
+        </Function>
+        <Function Name="spGetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserTaxCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Post" Type="nvarchar" Mode="In" />
+          <Parameter Name="EMail" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spGranteeAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="MiddleName" Type="nvarchar" Mode="In" />
+          <Parameter Name="NameInt" Type="nvarchar" Mode="In" />
+          <Parameter Name="TaxCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="DocSeries" Type="nvarchar" Mode="In" />
+          <Parameter Name="DocNum" Type="nvarchar" Mode="In" />
+          <Parameter Name="SexID" Type="int" Mode="In" />
+          <Parameter Name="Birthday" Type="date" Mode="In" />
+          <Parameter Name="Note" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="RowID" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="spLicenseCancel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LicenseID" Type="int" Mode="In" />
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="CancelReasonID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spLicenseSeek" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="TaxCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="DocSeries" Type="nvarchar" Mode="In" />
+          <Parameter Name="DocNum" Type="nvarchar" Mode="In" />
+          <Parameter Name="LegalOnly" Type="bit" Mode="In" />
+          <Parameter Name="StartDate" Type="date" Mode="In" />
+          <Parameter Name="FinalDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="spLicenseSet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GranteeID" Type="int" Mode="In" />
+          <Parameter Name="BankID" Type="int" Mode="In" />
+          <Parameter Name="CurrencyID" Type="int" Mode="In" />
+          <Parameter Name="Amount" Type="money" Mode="In" />
+          <Parameter Name="CountryID" Type="int" Mode="In" />
+          <Parameter Name="CorBankCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="CorBankName" Type="nvarchar" Mode="In" />
+          <Parameter Name="CorName" Type="nvarchar" Mode="In" />
+          <Parameter Name="CorCountryID" Type="int" Mode="In" />
+          <Parameter Name="PurposeID" Type="int" Mode="In" />
+          <Parameter Name="Note" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="LicenseID" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="sprpLicenseList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RowID" Type="int" Mode="In" />
+          <Parameter Name="StartDate" Type="date" Mode="In" />
+          <Parameter Name="FinalDate" Type="date" Mode="In" />
+        </Function>
+        <EntityContainer Name="Хранилище CLicenseModelContainer">
+          <EntitySet Name="vItemInfo" EntityType="Self.vItemInfo" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vItemInfo].[CID] AS [CID], 
+    [vItemInfo].[ClassParent] AS [ClassParent], 
+    [vItemInfo].[ClassCode] AS [ClassCode], 
+    [vItemInfo].[ClassName] AS [ClassName], 
+    [vItemInfo].[ClassNote] AS [ClassNote], 
+    [vItemInfo].[IID] AS [IID], 
+    [vItemInfo].[Parent] AS [Parent], 
+    [vItemInfo].[ItemCode] AS [ItemCode], 
+    [vItemInfo].[ItemCodeLit] AS [ItemCodeLit], 
+    [vItemInfo].[ItemCodeNum] AS [ItemCodeNum], 
+    [vItemInfo].[ItemName] AS [ItemName], 
+    [vItemInfo].[FullName] AS [FullName], 
+    [vItemInfo].[Note] AS [Note], 
+    [vItemInfo].[StartDate] AS [StartDate], 
+    [vItemInfo].[ExpireDate] AS [ExpireDate], 
+    [vItemInfo].[Status] AS [Status]
+    FROM [dbo].[vItemInfo] AS [vItemInfo]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CLicenseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CLicenseEntities1" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="spGetGrantee" ReturnType="Collection(CLicenseModel.spGetGrantee_Result)">
+            <Parameter Name="TaxCode" Mode="In" Type="String" />
+            <Parameter Name="DocSeries" Mode="In" Type="String" />
+            <Parameter Name="DocNum" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spGranteeAdd">
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="MiddleName" Mode="In" Type="String" />
+            <Parameter Name="NameInt" Mode="In" Type="String" />
+            <Parameter Name="TaxCode" Mode="In" Type="String" />
+            <Parameter Name="DocSeries" Mode="In" Type="String" />
+            <Parameter Name="DocNum" Mode="In" Type="String" />
+            <Parameter Name="SexID" Mode="In" Type="Int32" />
+            <Parameter Name="Birthday" Mode="In" Type="DateTime" />
+            <Parameter Name="Note" Mode="In" Type="String" />
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="RowID" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spLicenseSet">
+            <Parameter Name="GranteeID" Mode="In" Type="Int32" />
+            <Parameter Name="BankID" Mode="In" Type="Int32" />
+            <Parameter Name="CurrencyID" Mode="In" Type="Int32" />
+            <Parameter Name="Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="CountryID" Mode="In" Type="Int32" />
+            <Parameter Name="CorBankCode" Mode="In" Type="String" />
+            <Parameter Name="CorBankName" Mode="In" Type="String" />
+            <Parameter Name="CorName" Mode="In" Type="String" />
+            <Parameter Name="CorCountryID" Mode="In" Type="Int32" />
+            <Parameter Name="PurposeID" Mode="In" Type="Int32" />
+            <Parameter Name="Note" Mode="In" Type="String" />
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="LicenseID" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spLicenseSeek" ReturnType="Collection(CLicenseModel.spLicenseSeek_Result)">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="TaxCode" Mode="In" Type="String" />
+            <Parameter Name="DocSeries" Mode="In" Type="String" />
+            <Parameter Name="DocNum" Mode="In" Type="String" />
+            <Parameter Name="LegalOnly" Mode="In" Type="Boolean" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="FinalDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spGetLimitSum" ReturnType="Collection(Decimal)">
+            <Parameter Name="GranteeID" Mode="In" Type="Int32" />
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="CurrencyID" Mode="In" Type="Int32" />
+            <Parameter Name="Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="LimitSaldo" Mode="InOut" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="spLicenseCancel">
+            <Parameter Name="LicenseID" Mode="In" Type="Int32" />
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="CancelReasonID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sprpLicenseList" ReturnType="Collection(CLicenseModel.sprpLicenseList_Result)">
+            <Parameter Name="RowID" Mode="In" Type="Int32" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="FinalDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spGetUser" ReturnType="Collection(CLicenseModel.spGetUser_Result)">
+            <Parameter Name="UserCode" Mode="In" Type="String" />
+            <Parameter Name="UserTaxCode" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Post" Mode="In" Type="String" />
+            <Parameter Name="EMail" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="vItemInfo" EntityType="CLicenseModel.vItemInfo" />
+          <FunctionImport Name="spGetLimit">
+            <Parameter Name="GranteeID" Mode="In" Type="Int32" />
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="LimitSaldo" Mode="InOut" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="spCurrencyListCombo" ReturnType="Collection(CLicenseModel.spCurrencyListCombo_Result)" />
+        </EntityContainer>
+        <ComplexType Name="spGetGrantee_Result">
+          <Property Type="Int32" Name="RowID" Nullable="false" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MiddleName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NameInt" Nullable="true" MaxLength="160" />
+          <Property Type="String" Name="TaxCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DocSeries" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="DocNum" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="SexID" Nullable="true" />
+          <Property Type="DateTime" Name="Birthday" Nullable="true" />
+          <Property Type="Int32" Name="Status" Nullable="true" />
+          <Property Type="DateTime" Name="CloseDate" Nullable="true" />
+          <Property Type="String" Name="Note" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="SexCode" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="SexName" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="StatusCode" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="StatusName" Nullable="true" MaxLength="80" />
+        </ComplexType>
+        <ComplexType Name="spLicenseSeek_Result">
+          <Property Type="Int32" Name="RowID" Nullable="false" />
+          <Property Type="DateTime" Name="OperDate" Nullable="false" />
+          <Property Type="Int32" Name="GranteeID" Nullable="false" />
+          <Property Type="String" Name="ClientName" Nullable="false" MaxLength="152" />
+          <Property Type="String" Name="TaxCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DocSeries" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="DocNum" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="CurrencyID" Nullable="false" />
+          <Property Type="String" Name="CurrencyCode" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="CurrencyName" Nullable="true" MaxLength="80" />
+          <Property Type="Decimal" Name="Amount" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="AmountOrg" Nullable="true" Precision="19" />
+          <Property Type="String" Name="CountryName" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="CorBankCode" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="CorBankName" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="CorName" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Purpose" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="StatusCode" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="StatusName" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="CreateUser" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="CancelUser" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="CancelTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CancelReason" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="Note" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="sprpLicenseList_Result">
+          <Property Type="Int32" Name="LicenseID" Nullable="false" />
+          <Property Type="DateTime" Name="OperDate" Nullable="false" />
+          <Property Type="Int32" Name="GranteeID" Nullable="false" />
+          <Property Type="String" Name="GranteeName" Nullable="false" MaxLength="152" />
+          <Property Type="String" Name="TaxCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DocNum" Nullable="false" MaxLength="22" />
+          <Property Type="DateTime" Name="Birthday" Nullable="true" />
+          <Property Type="String" Name="CurrencyName" Nullable="true" MaxLength="80" />
+          <Property Type="Decimal" Name="Amount" Nullable="false" Precision="19" />
+          <Property Type="String" Name="BankName_Sender" Nullable="true" MaxLength="268" />
+          <Property Type="String" Name="CorBankCountry" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="CorBankCode" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="CorBankName" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="CorName" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="CorCountry" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="PurposeName" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="StatusName" Nullable="true" MaxLength="80" />
+          <Property Type="DateTime" Name="CancelDate" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spGetUser_Result">
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="String" Name="UserCode" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="UserTypeID" Nullable="true" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="TableNum" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="TaxCode" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="BankID" Nullable="false" />
+          <Property Type="Int32" Name="Status" Nullable="false" />
+          <Property Type="DateTime" Name="StartDate" Nullable="true" />
+          <Property Type="DateTime" Name="CloseDate" Nullable="true" />
+          <Property Type="DateTime" Name="ExpireDate" Nullable="true" />
+          <Property Type="String" Name="Post" Nullable="true" MaxLength="160" />
+          <Property Type="String" Name="EMail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TelNum" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Note" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="BankCode" Nullable="false" />
+          <Property Type="String" Name="BankName" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <EntityType Name="vItemInfo">
+          <Key>
+            <PropertyRef Name="CID" />
+            <PropertyRef Name="ClassCode" />
+            <PropertyRef Name="IID" />
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="CID" Type="Int32" Nullable="false" />
+          <Property Name="ClassParent" Type="Int32" />
+          <Property Name="ClassCode" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClassNote" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IID" Type="Int32" Nullable="false" />
+          <Property Name="Parent" Type="Int32" />
+          <Property Name="ItemCode" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ItemCodeLit" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ItemCodeNum" Type="Int32" />
+          <Property Name="ItemName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="160" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="ExpireDate" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="Int16" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="spCurrencyListCombo_Result">
+          <Property Type="Int32" Name="IID" Nullable="false" />
+          <Property Type="String" Name="ItemCode" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ItemCodeLit" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ItemName" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="NameCombo" Nullable="true" MaxLength="113" />
+          <Property Type="DateTime" Name="CourseDate" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище CLicenseModelContainer" CdmEntityContainer="CLicenseEntities1">
+          <FunctionImportMapping FunctionImportName="spGetGrantee" FunctionName="Хранилище CLicenseModel.spGetGrantee">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CLicenseModel.spGetGrantee_Result">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="NameInt" ColumnName="NameInt" />
+                <ScalarProperty Name="TaxCode" ColumnName="TaxCode" />
+                <ScalarProperty Name="DocSeries" ColumnName="DocSeries" />
+                <ScalarProperty Name="DocNum" ColumnName="DocNum" />
+                <ScalarProperty Name="SexID" ColumnName="SexID" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="SexCode" ColumnName="SexCode" />
+                <ScalarProperty Name="SexName" ColumnName="SexName" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGranteeAdd" FunctionName="Хранилище CLicenseModel.spGranteeAdd" />
+          <FunctionImportMapping FunctionImportName="spLicenseSet" FunctionName="Хранилище CLicenseModel.spLicenseSet" />
+          <FunctionImportMapping FunctionImportName="spLicenseSeek" FunctionName="Хранилище CLicenseModel.spLicenseSeek">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CLicenseModel.spLicenseSeek_Result">
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+                <ScalarProperty Name="OperDate" ColumnName="OperDate" />
+                <ScalarProperty Name="GranteeID" ColumnName="GranteeID" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="TaxCode" ColumnName="TaxCode" />
+                <ScalarProperty Name="DocSeries" ColumnName="DocSeries" />
+                <ScalarProperty Name="DocNum" ColumnName="DocNum" />
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="CurrencyName" ColumnName="CurrencyName" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="AmountOrg" ColumnName="AmountOrg" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CorBankCode" ColumnName="CorBankCode" />
+                <ScalarProperty Name="CorBankName" ColumnName="CorBankName" />
+                <ScalarProperty Name="CorName" ColumnName="CorName" />
+                <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="CancelUser" ColumnName="CancelUser" />
+                <ScalarProperty Name="CancelTime" ColumnName="CancelTime" />
+                <ScalarProperty Name="CancelReason" ColumnName="CancelReason" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetLimitSum" FunctionName="Хранилище CLicenseModel.spGetLimitSum" />
+          <FunctionImportMapping FunctionImportName="spLicenseCancel" FunctionName="Хранилище CLicenseModel.spLicenseCancel" />
+          <FunctionImportMapping FunctionImportName="sprpLicenseList" FunctionName="Хранилище CLicenseModel.sprpLicenseList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CLicenseModel.sprpLicenseList_Result">
+                <ScalarProperty Name="LicenseID" ColumnName="LicenseID" />
+                <ScalarProperty Name="OperDate" ColumnName="OperDate" />
+                <ScalarProperty Name="GranteeID" ColumnName="GranteeID" />
+                <ScalarProperty Name="GranteeName" ColumnName="GranteeName" />
+                <ScalarProperty Name="TaxCode" ColumnName="TaxCode" />
+                <ScalarProperty Name="DocNum" ColumnName="DocNum" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="CurrencyName" ColumnName="CurrencyName" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="BankName_Sender" ColumnName="BankName_Sender" />
+                <ScalarProperty Name="CorBankCountry" ColumnName="CorBankCountry" />
+                <ScalarProperty Name="CorBankCode" ColumnName="CorBankCode" />
+                <ScalarProperty Name="CorBankName" ColumnName="CorBankName" />
+                <ScalarProperty Name="CorName" ColumnName="CorName" />
+                <ScalarProperty Name="CorCountry" ColumnName="CorCountry" />
+                <ScalarProperty Name="PurposeName" ColumnName="PurposeName" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="CancelDate" ColumnName="CancelDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetUser" FunctionName="Хранилище CLicenseModel.spGetUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CLicenseModel.spGetUser_Result">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="TableNum" ColumnName="TableNum" />
+                <ScalarProperty Name="TaxCode" ColumnName="TaxCode" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+                <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+                <ScalarProperty Name="Post" ColumnName="Post" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="TelNum" ColumnName="TelNum" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="BankCode" ColumnName="BankCode" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="vItemInfo">
+            <EntityTypeMapping TypeName="CLicenseModel.vItemInfo">
+              <MappingFragment StoreEntitySet="vItemInfo">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ItemCodeNum" ColumnName="ItemCodeNum" />
+                <ScalarProperty Name="ItemCodeLit" ColumnName="ItemCodeLit" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="Parent" ColumnName="Parent" />
+                <ScalarProperty Name="IID" ColumnName="IID" />
+                <ScalarProperty Name="ClassNote" ColumnName="ClassNote" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="ClassCode" ColumnName="ClassCode" />
+                <ScalarProperty Name="ClassParent" ColumnName="ClassParent" />
+                <ScalarProperty Name="CID" ColumnName="CID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spGetLimit" FunctionName="Хранилище CLicenseModel.spGetLimit" />
+          <FunctionImportMapping FunctionImportName="spCurrencyListCombo" FunctionName="Хранилище CLicenseModel.spCurrencyListCombo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CLicenseModel.spCurrencyListCombo_Result">
+                <ScalarProperty Name="IID" ColumnName="IID" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemCodeLit" ColumnName="ItemCodeLit" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="NameCombo" ColumnName="NameCombo" />
+                <ScalarProperty Name="CourseDate" ColumnName="CourseDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

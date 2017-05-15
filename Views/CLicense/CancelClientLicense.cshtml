@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Відміна ліцензії";
+}
+<h2>Скасування ліцензій по клієнту</h2>
+@using (@Html.BeginForm("CancelClientLicense", "Clicense", FormMethod.Post))
+{
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.Label("Причина скасування ліцензії:", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.DropDownList("cancelReason", (SelectList)ViewBag.CancelReasonList, "...", new { @class = "form-control userinfo", @required = true })
+            @Html.Hidden("rowid", TempData["RowID"].ToString())
+            @Html.Hidden("taxCode", TempData["TaxCode"].ToString())
+        </div>
+        <div class="container">
+            <button id="Cancel" type="submit" class="btn btn-primary">
+                 Скасувати ліцензію</button>
+            @*<button onclick="location.href='@Url.Action("CancelLicense",new {taxCode= TempData["TaxCode"].ToString() })'" id="ToList" type="button" class="btn btn-primary">Повернутись до списку</button>*@
+            <button onclick="location.href='@Url.Action("CancelLicense")'" id="ToList" type="button" class="btn btn-primary">Повернутись до списку</button>
+        </div>
+    </div>
+}
+<hr />
+@Html.Partial("License")
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(function () {
+            $('.form-control').attr('readonly', true);
+            $('#cancelReason').attr('readonly', false);
+        })
+    </script>
+}

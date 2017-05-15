@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Опис системи";
+    string sertificate = "";
+    if (@Session["userPIB"] != null)
+    {
+        sertificate = @Session["userPIB"].ToString();
+    }
+    else
+    {
+        sertificate = "";
+    }
+}
+
+@Html.Partial("About")
+<div id="InfoMessage" class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>@sertificate</strong><br>
+          Ви увійшли у систему "Реєстр індивідуальних ліцензій на здійснення фізичними особами резидентами валютних операцій"
+
+    </div>

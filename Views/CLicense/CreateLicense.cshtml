@@ -1,0 +1,294 @@
+﻿@model CLicense.Models.CLicenseModel
+@{
+    string title = TempData["Title"] == null ? "Формування ліцензії" : TempData["Title"].ToString();
+}
+@using (Ajax.BeginForm("CheckSaveLicense", "Clicense",
+                new AjaxOptions { HttpMethod = "Post", OnSuccess = "SuccessLicense", OnFailure = "FailureLicense" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h2>@title</h2>
+        <hr />
+        @Html.Partial("Instruction")
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.TaxCode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TaxCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TaxCode, "", new { @class = "text-danger" })
+                <span class="badge">Ліміт:<span id="Limit"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DocSeries, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DocSeries, new { htmlAttributes = new { @class = "form-control userinfo" } })
+                @Html.ValidationMessageFor(model => model.DocSeries, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DocNum, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DocNum, new { htmlAttributes = new { @class = "form-control userinfo" } })
+                @Html.ValidationMessageFor(model => model.DocNum, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control userinfo" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control userinfo" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MiddleName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control userinfo" } })
+                @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group date">
+            @Html.LabelFor(model => model.Birthday, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 date">
+                @Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @class = "date-picker form-control userinfo" } })
+                @Html.ValidationMessageFor(model => model.Birthday, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SexID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.SexID, (SelectList)ViewBag.SexList, "...", new { @class = "form-control userinfo" })
+                @Html.ValidationMessageFor(model => model.SexID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CorBankCode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CorBankCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CorBankCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CorBankName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CorBankName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CorBankName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CountryID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CountryID, (SelectList)ViewBag.CountryList, "...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CountryID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CorName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CorName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CorName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CorCountryID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CorCountryID, (SelectList)ViewBag.CountryList, "...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CorCountryID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PurposeID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.PurposeID, (SelectList)ViewBag.PurposeList, "...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PurposeID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CurrencyID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CurrencyID, (SelectList)ViewBag.CurrencyList, "...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CurrencyID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @Html.HiddenFor(model => model.SaveController, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.GranteeRowID, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.RowID, new { htmlAttributes = new { @class = "form-control" } })
+
+        <div id="ConfirmMessage" class="alert alert-info" hidden="hidden">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            <h3>Уважно перевірте введену інформацію та підтвердіть...</h3>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="BtnSubmit" type="submit" value = "Зформувати ліцензію" class="btn btn-primary" />
+                <button onclick=EnableInput() id="Confirm" type="button" class="btn btn-primary" style="display:none;" >Скоригувати інформацію</button>
+                @*style="display:none;"*@
+            </div>
+        </div>
+</div>
+}
+<div id="SuccessMessage" class="alert alert-success" hidden="hidden">
+    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+    <h3>Ліцензія зформована...</h3>
+    @using (@Html.BeginForm("ReportLicensePersonel", "CLicense", FormMethod.Post, new { target = "_blank" }))
+    {
+        <button id="Print" type="submit" class="btn btn-success" target="_blank">
+            <span class="glyphicon glyphicon-print"></span> Роздрукувати випискуи про ліцензію
+        </button>
+        <button onclick="location.href='@Url.Action("CreateLicense")'" id="ToList" type="button" class="btn btn-primary">Перейти на формування іншої ліцензії</button>
+        <button onclick="location.href='@Url.Action("Index")'" id="ToList" type="button" class="btn btn-primary">Головна сторінка</button>
+    }
+</div>
+
+<div id="CancelMessage" class="alert alert-danger" hidden="hidden">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    <h3>Помилка формування ліцензії...</h3>
+    <div id="ErrorMessage">
+        @Html.Raw(TempData["ErrorMessage"] == null ? "" : @TempData["ErrorMessage"].ToString())
+    </div>
+</div>
+<div>
+</div>
+@section Scripts {
+@Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script  type="text/javascript">
+    function SuccessLicense(data) {
+        if (data.Code == -1) {
+            $("#ErrorMessage").text(data.ErrorMessage);
+            $("#CancelMessage").show();
+            ShowMessagesBox();
+        }
+        else
+            if (data.Code == -999) {
+                $("#CancelMessage").hide();
+                $("#BtnSubmit").hide();
+                $("#SuccessMessage").show();
+                $("#ConfirmMessage").hide();
+                $("#InfoMessage").hide()
+                $("#RowID").val(data.RowID);
+                $("#Confirm").attr('style', 'display:none;');
+            }
+            else {
+                $("#CancelMessage").hide();
+                $("#ConfirmMessage").show();
+                $("#BtnSubmit").prop('value', 'Підтвердити ліцензію');
+                $("#Confirm").attr('style', 'display');
+                $('.form-control').attr('readonly', 'readonly');
+                $("#SaveController").val(true);
+                $("#InfoMessage").hide()
+                $('#BtnSubmit').attr("class", "btn btn-success");
+            }
+    }
+    function EnableInput()
+    {
+        $('.form-control').attr('readonly', false);
+        $("#Confirm").attr('style', 'display:none;');
+        $("#BtnSubmit").prop('value', 'Зформувати ліцензію');
+        $("#ConfirmMessage").hide();
+        ShowMessagesBox();
+    }
+    function ShowMessagesBox()
+    {
+        $("#ConfirmMessage").hide();
+        $("#SaveController").val(false);
+        $('.form-control').attr('readonly', false);
+        $("#InfoMessage").hide();
+    }
+
+    function FailureLicense(data) {
+           $("#CancelMessage").show();
+
+    }
+    $(function () {
+        $("#SexID").rules("remove", "required");
+        $("#TaxCode").focusout(function () {
+            $('#BtnSubmit').prop('disabled', true);
+            $.ajax({
+                type: "POST",
+                url: "/Clicense/GetGrantee",
+                data: '{taxCode: "' + $("#TaxCode").val() + '" }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response.LastName != null) {
+                        $("#FirstName").val(response.FirstName);
+                        $("#LastName").val(response.LastName);
+                        $("#MiddleName").val(response.MiddleName);
+                        $("#DocNum").val(response.DocNum);
+                        $("#DocSeries").val(response.DocSeries);
+                        $("#SexID").val(response.SexID);
+                        $("#Birthday").val(response.Birthday);
+                        $("#GranteeRowID").val(response.GranteeRowID);
+                        $("#CorBankCode").focus();
+                        $('.userinfo').attr('readonly', true);
+                        $("#Limit").text(response.Limit);
+                    }
+                    else {
+                        //$("#FirstName").val('');
+                        //$("#LastName").val('');
+                        //$("#MiddleName").val('');
+                        //$("#DocNum").val('');
+                        //$("#DocSeries").val('');
+                        //$("#SexID").val('');
+                        //$("#Birthday").val('');
+                        $('.userinfo').attr('readonly', false);
+                    }
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            }).done(function (data) {
+                $('#BtnSubmit').prop('disabled', false);
+            });
+        });
+        //$("#buttoncollapse").click();
+    })
+</script>
+}

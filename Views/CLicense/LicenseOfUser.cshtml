@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "CancelLicense";
+}
+
+<h2>Задайте реквізити для відбору ліцензій по клієнту</h2>
+<hr>
+@using (@Html.BeginForm("ReportLicensesPersonel", "CLicense", FormMethod.Post, new { target = "_blank" }))
+{
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.Label("Ідентифікаційгий номер:", htmlAttributes: new { @class = "control-label col-md-2", MaxLength = 10 })
+            @Html.TextBox("taxCode", TempData["TaxCode"] == null ? "" : TempData["TaxCode"].ToString(), htmlAttributes: new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.Label("Серія паспорту:", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.TextBox("docSeries", null, htmlAttributes: new { @class = "form-control", MaxLength = 2})
+        </div>
+        <div class="form-group">
+            @Html.Label("Номер паспорту:", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.TextBox("docNum", null, htmlAttributes: new { @class = "form-control", MaxLength = 6 })
+        </div>
+        <div class="form-group">
+            @Html.Label("Дата початку:", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.TextBox("startDate", null, htmlAttributes: new { @class = "date-picker form-control"})
+        </div>
+        <div class="form-group">
+            @Html.Label("Дата закінчення:", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.TextBox("finalDate", null, htmlAttributes: new { @class = "date-picker form-control" })
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button id="Find" type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon glyphicon-print"></span> Отримати звіт
+                </button>
+            </div>
+        </div>
+    </div>
+}
+<section Scripts {
+@Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+$(function()
+{
+    $("#buttoncollapse").click();
+    @Html.Raw(TempData["TaxCode"] != null ? "refresh=1" : "refresh = 0")
+    if (refresh == 1)
+        $("#Find").click()
+        //alert();
+})
+</script>

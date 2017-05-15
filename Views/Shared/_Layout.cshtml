@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "Система «Реєстр індивідуальних ліцензій»";
+    string username = @Session["userPIB"] != null ? "Користувач: " + "\""+@Session["userPIB"].ToString() + "\"" : "";
+    string version = @Session["Version"] != null ? "Версія -" + @Session["Version"].ToString() : "";
+}
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title – Національний банк України</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/cssjqryUi")
+    <link href="/content/style.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container">
+        <div id="wrapper">
+            <div class="navbar navbar-default navbar-static-top">
+                <img class="logo" src="/image/GRIFON-white.png">
+                <span class="logo-text">НБУ</span>
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6"></div>
+                    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-6">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li>@Html.ActionLink("Формування ліцензії", "CreateLicense", "CLicense")</li>
+                                <li>@Html.ActionLink("Відміна ліцензії", "CancelLicense", "CLicense")</li>
+                                <li>@Html.ActionLink("Ліцензії по клієнту", "LicenseOfUser", "CLicense")</li>
+                                <li>@Html.ActionLink("Про систему", "About", "CLicense")</li>
+                                <li>@Html.ActionLink("Контакти", "Contact", "CLicense")</li>
+                            </ul>
+
+                            @*@Html.Partial("_LoginPartial")*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container body-content">
+                @RenderBody()
+                <div class="text-center" id="footercolor">
+                    <footer>
+                        <p>@username</p>
+                        <p>&copy; Національний банк України. @version</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @Scripts.Render("~/bundles/jqueryui")
+            @RenderSection("scripts", required: false)
+
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".date-picker").datepicker({
+            dateFormat: 'dd/mm/yy', yearRange: "-100:+0", changeMonth: true,
+            changeYear: true,
+        })
+                    .get(0);
+    });
+    $.datepicker.regional['ua'] = {
+        closeText: 'Закрити',
+        prevText: '&#x3c;Поп',
+        nextText: 'Наст&#x3e;',
+        currentText: 'Сьогодні',
+        monthNames: ['Лютий', 'Січень', 'Березень', 'Квітень', 'Травень', 'Червень',
+        'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
+        monthNamesShort: ['Лют', 'Січ', 'Бер', 'Квіт', 'Трав', 'Черв',
+        'Лип', 'Серп', 'Вер', 'Жовт', 'Лист', 'Груд'],
+        dayNames: ['неділя', 'понеділок', 'вівторок', 'среда', 'четвер', 'п\'ятница', 'субота'],
+        dayNamesShort: ['нд', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'],
+        dayNamesMin: ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+        weekHeader: 'Ти',
+        dateFormat: 'dd.mm.yy',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: ''
+    };
+    $.datepicker.setDefaults($.datepicker.regional['ua']);
+</script>

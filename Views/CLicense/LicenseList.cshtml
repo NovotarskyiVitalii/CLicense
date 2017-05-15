@@ -1,0 +1,95 @@
+﻿@model IEnumerable<CLicense.Models.spLicenseSeek_Result>
+@if (Model != null)
+{ 
+<table id="Table" class="table-bordered table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OperDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RowID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrencyCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrencyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorBankCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorBankName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Purpose)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateUser)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OperDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RowID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrencyCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrencyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorBankCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorBankName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Purpose)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateUser)
+            </td>
+            <td>
+                @Html.ActionLink("Скасувати", "CancelClientLicense", new {rowid=item.RowID  })
+            </td>
+        </tr>
+    }
+    </table>
+    }
+    <br>
+    
+
+
+
+
