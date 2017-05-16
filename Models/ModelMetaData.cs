@@ -26,7 +26,7 @@ namespace CLicense.Models
         public DateTime OperDate { get; set; }
         [Display(Name = "Номер ліцензії")]
         public int RowID { get; set; }
-        [Display(Name = "ФІО клієнта")]
+        [Display(Name = "ПІБ клієнта")]
         public string ClientName { get; set; }
         [Display(Name = "Ідентифікаційгий номер")]
         public string TaxCode { get; set; }
@@ -68,9 +68,9 @@ namespace CLicense.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
         [Display(Name = "Дата")]
         public DateTime OperDate { get; set; }
-        [Display(Name = "ФІО клієнта")]
+        [Display(Name = "ПІБ клієнта")]
         public string GranteeName { get; set; }
-        [Display(Name = "Ідентифікаційгий номер")]
+        [Display(Name = "Ідентифікаційний номер")]
         public string TaxCode { get; set; }
         //[Display(Name = "Серія паспорту")]
         //public string DocSeries { set; get; }
@@ -80,7 +80,7 @@ namespace CLicense.Models
         public string Birthday { set; get; }
         [Display(Name = "Код банку одержувача")]
         public string CorBankCode { set; get; }
-        [Display(Name = "Банк одержувача")]
+        [Display(Name = "Уповноважений банк")]
         public string BankName_Sender { set; get; }
         [Display(Name = "Країна банку одержувача")]
         public int CorBankCountry { set; get; }
@@ -88,7 +88,7 @@ namespace CLicense.Models
         public int CorCountry { set; get; }
         [Display(Name = "Одержувач")]
         public string CorName { set; get; }
-        [Display(Name = "Одержувач")]
+        [Display(Name = "Банк одержувача")]
         public int CorBankName { set; get; }
         [Display(Name = "Призначення платежу")]
         public int PurposeName { set; get; }
