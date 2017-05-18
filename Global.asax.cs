@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using System.Web.Compilation;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -16,8 +18,12 @@ namespace CLicense
     {
         protected void Application_Start()
         {
-            AutofacConfig.ConfigureContainer();
+            log4net.Config.XmlConfigurator.Configure();
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(BuildManager.GetGlobalAsaxType().BaseType.Assembly.Location);
+            var version = fvi.FileVersion;
+            log4net.GlobalContext.Properties["App_Name"] = "CLicense" + version;
 
+            AutofacConfig.ConfigureContainer();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
