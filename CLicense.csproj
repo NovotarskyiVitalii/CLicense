@@ -44,11 +44,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ADWorkLib">
-      <HintPath>..\..\CLicense\Certificate\ADWorkLib.dll</HintPath>
+    <Reference Include="ADWorkLib, Version=2.5.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CertificateDll\ADWorkLib.dll</HintPath>
     </Reference>
-    <Reference Include="authUserLib2">
-      <HintPath>..\..\CLicense\Certificate\authUserLib2.dll</HintPath>
+    <Reference Include="authUserLib, Version=1.3.4.1, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CertificateDll\authUserLib.dll</HintPath>
+    </Reference>
+    <Reference Include="authUserLib2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CertificateDll\authUserLib2.dll</HintPath>
     </Reference>
     <Reference Include="Autofac, Version=4.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\..\CLicense\packages\Autofac.4.5.0\lib\net45\Autofac.dll</HintPath>
@@ -58,8 +64,13 @@
       <HintPath>..\..\CLicense\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="certWorkerLib">
-      <HintPath>..\..\CLicense\Certificate\certWorkerLib.dll</HintPath>
+    <Reference Include="certWorkerLib, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CertificateDll\certWorkerLib.dll</HintPath>
+    </Reference>
+    <Reference Include="EF_DBLoggingL4NetLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CertificateDll\EF_DBLoggingL4NetLib.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\CLicense\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -69,18 +80,25 @@
       <HintPath>..\..\CLicense\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="JsonWorkerLib">
-      <HintPath>..\..\CLicense\Certificate\JsonWorkerLib.dll</HintPath>
+    <Reference Include="JsonWorkerLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CertificateDll\JsonWorkerLib.dll</HintPath>
     </Reference>
-    <Reference Include="libWebFilters2">
-      <HintPath>..\..\CLicense\Certificate\libWebFilters2.dll</HintPath>
+    <Reference Include="libHashWorker, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CertificateDll\libHashWorker.dll</HintPath>
+    </Reference>
+    <Reference Include="libWebFilters2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CertificateDll\libWebFilters2.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\..\CLicense\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CertificateDll\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Log4NetUtils">
-      <HintPath>..\..\CLicense\Certificate\Log4NetUtils.dll</HintPath>
+    <Reference Include="Log4NetUtils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CertificateDll\Log4NetUtils.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\CLicense\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -91,20 +109,33 @@
       <HintPath>..\..\CLicense\packages\Microsoft.ReportViewer.2012.Runtime.11.0.3452.0\lib\Microsoft.ReportViewer.WebForms.DLL</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NBUSec_DBModel">
-      <HintPath>..\..\CLicense\Certificate\NBUSec_DBModel.dll</HintPath>
+    <Reference Include="NBUSec_DBModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CertificateDll\NBUSec_DBModel.dll</HintPath>
     </Reference>
-    <Reference Include="NBUSec_Types">
-      <HintPath>..\..\CLicense\Certificate\NBUSec_Types.dll</HintPath>
+    <Reference Include="NBUSec_Types, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CertificateDll\NBUSec_Types.dll</HintPath>
     </Reference>
-    <Reference Include="OIO_LoggerTypes_ProxyModel">
-      <HintPath>..\..\CLicense\Certificate\OIO_LoggerTypes_ProxyModel.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CertificateDll\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Oracle_DB_Conn">
-      <HintPath>..\..\CLicense\Certificate\Oracle_DB_Conn.dll</HintPath>
+    <Reference Include="Newtonsoft.Json.Schema, Version=2.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CertificateDll\Newtonsoft.Json.Schema.dll</HintPath>
     </Reference>
-    <Reference Include="REST_API_Client">
-      <HintPath>..\..\CLicense\Certificate\REST_API_Client.dll</HintPath>
+    <Reference Include="OIO_LoggerTypes_ProxyModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CertificateDll\OIO_LoggerTypes_ProxyModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle_DB_Conn, Version=1.2.0.1, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CertificateDll\Oracle_DB_Conn.dll</HintPath>
+    </Reference>
+    <Reference Include="REST_API_Client, Version=3.0.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CertificateDll\REST_API_Client.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -161,11 +192,13 @@
       <Private>True</Private>
       <HintPath>..\..\CLicense\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="userInfoTypes">
-      <HintPath>..\..\CLicense\Certificate\userInfoTypes.dll</HintPath>
+    <Reference Include="userInfoTypes, Version=1.0.3.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CertificateDll\userInfoTypes.dll</HintPath>
     </Reference>
-    <Reference Include="userInfo_WebApp">
-      <HintPath>..\..\CLicense\Certificate\userInfo_WebApp.dll</HintPath>
+    <Reference Include="userInfo_WebApp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CertificateDll\userInfo_WebApp.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -175,13 +208,9 @@
       <Private>True</Private>
       <HintPath>..\..\CLicense\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="x509Types">
-      <HintPath>..\..\CLicense\Certificate\x509Types.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\CLicense\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="x509Types, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CertificateDll\x509Types.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

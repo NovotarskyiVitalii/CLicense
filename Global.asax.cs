@@ -29,32 +29,6 @@ namespace CLicense
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
-        //protected void Session_Start(Object sender, EventArgs e)
-        //{
-        //}
-        //protected void Application_AuthenticateRequest(Object sender, EventArgs e)
-        //{
-
-        //}
-        //protected void Application_PreSendRequestContent(Object sender, EventArgs e)
-        //{
-
-        //}
-        //protected void Application_BeginRequest(Object sender, EventArgs e)
-        //{
-
-        //}
-        //protected void Application_AcquireRequestState(Object sender, EventArgs e)
-        //{
-        //    Session["UserID"] = 1;
-        //    Session["BankID"] = 16;
-        //    Session["userPIB"] = "Тестовий користувач";
-        //    Session["Version"] = "";
-        //}
-        //protected void Application_PreSendContent(Object sender, EventArgs e)
-        //{
-
-        //}
 
         protected void Application_PreRequestHandlerExecute(Object sender, EventArgs e)
         {
@@ -72,6 +46,11 @@ namespace CLicense
             if (HttpContext.Current.Session != null && HttpContext.Current.Session["UserID"] == null)
             {
                 UserInfo2 MVC_userCred = (UserInfo2)HttpContext.Current.Items["MVC_userCred"];
+                //if (MVC_userCred == null)
+                //{
+                //    HttpContext.Current.Response.Redirect("~/CLicense/ErrorGetUser?message=Помилка зчитування сертифікату", false);
+                //    return;
+                //}
                 int? userID;
                 int? BankID;
                 int dd = Convert.ToInt32(Session["UserID"]);
