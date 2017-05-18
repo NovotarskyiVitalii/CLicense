@@ -245,6 +245,27 @@ namespace CLicense.DAL
             }
             return returnstring;
         }
+
+        public int GetLimitSum(int? granteeID, int userID, int currensyID, int amount)
+        {
+            ObjectParameter limitSaldo = new ObjectParameter("LimitSaldo", typeof(int));
+            try
+            {
+                _db.spGetLimitSum(
+                      granteeID: granteeID,
+                      userID: userID,
+                      currencyID: currensyID,
+                      amount: amount,
+                      limitSaldo: limitSaldo
+                      );
+                return Convert.ToInt32(limitSaldo.Value);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.InnerException.Message;
+                return -1;
+            }
+        }
     }
     public class RGrantee : IRGrantee
     {

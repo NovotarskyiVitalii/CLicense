@@ -140,7 +140,8 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
-            </div>
+                <span title="Залишок ліміту після проведення операції" class="badge">Ліміт:<span id="LimitSum"></span>
+</div>
         </div>
 
         <div class="form-group">
@@ -240,8 +241,33 @@
     }
 
     function FailureLicense(data) {
-           $("#CancelMessage").show();
-
+        $("#CancelMessage").show();
+    }
+    function GetLimitSaldo() {
+        $('#BtnSubmit').prop('disabled', true);
+        var amount = $("#Amount").val();
+        var currencyID = $("#CurrencyID").val();
+        var granteeRowID = $("#GranteeRowID").val();
+        $.ajax({
+            type: "POST",
+            url: "/Clicense/GetLimitSum",
+            data: "{'amount':'" + amount + "', 'currencyID':'" + currencyID + "','granteeRowID':'" + granteeRowID + "'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                if (response.LimitSaldo != -1) {
+                    $("#LimitSum").text(response.LimitSaldo);
+                }
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        }).done(function (data) {
+            $('#BtnSubmit').prop('disabled', false);
+        });
     }
     $(function () {
         $("#SexID").rules("remove", "required");
@@ -287,6 +313,14 @@
             }).done(function (data) {
                 $('#BtnSubmit').prop('disabled', false);
             });
+        });
+
+        $("#Amount").focusout(function () {
+            GetLimitSaldo();
+        });
+        $("#CurrencyID").click(function () {
+            if ($("#Amount").val() > 0 )
+                GetLimitSaldo();
         });
         //$("#buttoncollapse").click();
     })

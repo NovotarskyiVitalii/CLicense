@@ -181,7 +181,7 @@ namespace CLicense.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spLicenseSeek_Result>("spLicenseSeek", userIDParameter, taxCodeParameter, docSeriesParameter, docNumParameter, legalOnlyParameter, startDateParameter, finalDateParameter);
         }
     
-        public virtual ObjectResult<Nullable<decimal>> spGetLimitSum(Nullable<int> granteeID, Nullable<int> userID, Nullable<int> currencyID, Nullable<decimal> amount, ObjectParameter limitSaldo)
+        public virtual int spGetLimitSum(Nullable<int> granteeID, Nullable<int> userID, Nullable<int> currencyID, Nullable<decimal> amount, ObjectParameter limitSaldo)
         {
             var granteeIDParameter = granteeID.HasValue ?
                 new ObjectParameter("GranteeID", granteeID) :
@@ -199,7 +199,7 @@ namespace CLicense.Models
                 new ObjectParameter("Amount", amount) :
                 new ObjectParameter("Amount", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("spGetLimitSum", granteeIDParameter, userIDParameter, currencyIDParameter, amountParameter, limitSaldo);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spGetLimitSum", granteeIDParameter, userIDParameter, currencyIDParameter, amountParameter, limitSaldo);
         }
     
         public virtual int spLicenseCancel(Nullable<int> licenseID, Nullable<int> userID, Nullable<int> cancelReasonID)

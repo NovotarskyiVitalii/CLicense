@@ -24,6 +24,7 @@ namespace CLicense.Infrastructure
         int AddGrantee(int userID);
         int CheckLicense(int? granteeID, int bankID, int userID);
         int GetLimit(int? granteeID, int bankID, int userID);
+        int GetLimitSum(int? granteeID, int userID, int currensyID, int amount);
         string GetUser(string userCode, string userTaxCode, string userName, string post, string eMail, out int? userID, out int? bankID);
         string ErrorMessage { set; get; }
         CLicenseModel CLicenseModel { set; get; }

@@ -16,7 +16,7 @@ namespace CLicense.Models
     {
         const string kirilicpatern = @"[А-Яа-яЇїЄєІі''""]+";
         [Display(Name = "Ідентифікаційний номер")]
-        [RegularExpression(@"\d{10}", ErrorMessage = "Букви неможливі")]
+        [RegularExpression(@"\d{10}", ErrorMessage = "Невірно заданий ІНН")]
         [StringLength(10, MinimumLength = 10)]
         public string TaxCode { set; get; }
         [StringLength(2,MinimumLength =2)]

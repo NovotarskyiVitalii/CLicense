@@ -150,7 +150,20 @@ namespace CLicense.Controllers
             }
             return Json(model);
         }
-
+        [HttpPost]
+        public JsonResult GetLimitSum(int? granteeRowID, int? currencyID, int? amount)
+        {
+            if (granteeRowID != null && currencyID != null)
+            {
+                int limit = _r.GetLimitSum(granteeID: granteeRowID, userID: Convert.ToInt32(Session["UserID"]), currensyID: Convert.ToInt32(currencyID), amount: Convert.ToInt32(amount));
+                if (_r.ErrorMessage == null)
+                    return Json(new { Code = -1, ErrorMessage = "", LimitSaldo = (int)limit });
+                else
+                    return Json(new { Code = -1, ErrorMessage = _r.ErrorMessage, LimitSaldo = -1 });
+            }
+            else
+                return Json(new { Code = -1, ErrorMessage = _r.ErrorMessage, LimitSaldo = -1 });
+        }
 
         [HttpGet]
         public ActionResult CancelLicense()
