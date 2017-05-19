@@ -43,7 +43,7 @@ namespace CLicense.Controllers
 
             return View();
         }
-
+        [OutputCache(Duration = 500, VaryByParam = "none")]
         public ActionResult CreateLicense()
         {
             CLicenseModel model;
