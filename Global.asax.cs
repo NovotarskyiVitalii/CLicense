@@ -45,12 +45,19 @@ namespace CLicense
 #if !test
             if (HttpContext.Current.Session != null && HttpContext.Current.Session["UserID"] == null)
             {
+                
                 UserInfo2 MVC_userCred = (UserInfo2)HttpContext.Current.Items["MVC_userCred"];
-                //if (MVC_userCred == null)
-                //{
-                //    HttpContext.Current.Response.Redirect("~/CLicense/ErrorGetUser?message=Помилка зчитування сертифікату", false);
-                //    return;
-                //}
+                if (MVC_userCred == null)
+                {
+                    //throw new Exception("Помилка зчитування сертифікату.");
+                    if (Session["CertificateError"] == null)
+                    {
+                        Session["CertificateError"] = true;
+                        HttpContext.Current.Response.Redirect("~/CLicense/ErrorGetUser?message=Помилка зчитування сертифікату", false);
+                    }
+                    return;
+                }
+                
                 int? userID;
                 int? BankID;
                 int dd = Convert.ToInt32(Session["UserID"]);
